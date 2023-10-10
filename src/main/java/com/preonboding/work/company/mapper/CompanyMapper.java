@@ -1,6 +1,7 @@
 package com.preonboding.work.company.mapper;
 
 
+import com.preonboding.work.company.dto.CompanyPatchDto;
 import com.preonboding.work.company.dto.CompanyPostDto;
 import com.preonboding.work.company.dto.CompanyResponseDto;
 import com.preonboding.work.company.entity.Company;
@@ -11,4 +12,6 @@ public interface CompanyMapper {
     Company companyPostDtoToCompany(CompanyPostDto companyPostDto);
 
     Company companyToResponseDto(Company company);
+
+    Company companyPatchDtoToCompany(CompanyPatchDto companyPatchDto);
 }
