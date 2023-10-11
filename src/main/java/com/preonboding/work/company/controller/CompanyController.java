@@ -6,6 +6,9 @@ import com.preonboding.work.company.dto.CompanyPostDto;
 import com.preonboding.work.company.entity.Company;
 import com.preonboding.work.company.mapper.CompanyMapper;
 import com.preonboding.work.company.service.CompanyService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,12 +73,16 @@ public class CompanyController {
     }
 
     //체용공고 검색
+    //페이징 추가
     @GetMapping("/search")
-    public ResponseEntity<List<Company>> search(@RequestParam("search")String search) throws Exception {
+    public ResponseEntity<Page<Company>> search(@RequestParam("search")String search
+         ,@RequestParam(name="page", defaultValue = "0")    int page
+         ,@RequestParam(name = "size", defaultValue = "10") int size) throws Exception {
 
-          List<Company> searchList= companyService.getSearchCompany(search);
+        Pageable pageable= PageRequest.of(page,size);
+        Page<Company> companyPageSearch= companyService.getSearchCompany(search,pageable);
 
-          return new ResponseEntity<>(searchList,HttpStatus.OK);
+        return new ResponseEntity<>(companyPageSearch,HttpStatus.OK);
 
 
     }

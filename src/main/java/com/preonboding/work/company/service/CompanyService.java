@@ -3,6 +3,8 @@ package com.preonboding.work.company.service;
 
 import com.preonboding.work.company.entity.Company;
 import com.preonboding.work.company.repository.CompanyRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -76,8 +78,9 @@ public class CompanyService {
     }
 
     //채용공고 검색
-    public List<Company> getSearchCompany(String search) {
+    //페이징 추가
+    public Page<Company> getSearchCompany(String search, Pageable pageable) {
 
-     return companyRepository.findByPostionContainingOrTechnologyContaining(search,search);
+     return companyRepository.findByPostionContainingOrTechnologyContaining(search,search,pageable);
     }
 }
