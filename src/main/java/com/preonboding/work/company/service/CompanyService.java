@@ -5,6 +5,7 @@ import com.preonboding.work.company.entity.Company;
 import com.preonboding.work.company.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,7 +45,7 @@ public class CompanyService {
         return companyRepository.save(companyId);
 
     }
-
+     //회사 id 체크
     public  Company findVerifiedCompany(Long companyId) throws Exception {
 
            Optional<Company> companyOptional= companyRepository.findById(companyId);
@@ -64,5 +65,19 @@ public class CompanyService {
     public Company findCompany(long companyId) throws Exception{
 
         return findVerifiedCompany(companyId);
+    }
+
+    public List<Company> getCompanyList() {
+
+        List<Company> companyList= companyRepository.findAll();
+
+        return companyRepository.saveAll(companyList);
+
+    }
+
+    //채용공고 검색
+    public List<Company> getSearchCompany(String search) {
+
+     return companyRepository.findByPostionContainingOrTechnologyContaining(search,search);
     }
 }

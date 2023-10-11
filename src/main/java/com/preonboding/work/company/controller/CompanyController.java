@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
@@ -56,6 +58,26 @@ public class CompanyController {
         companyService.deleteCompany(companyId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    //채용공고 목록 가져오기
+    @GetMapping
+    public ResponseEntity getCompanyList(){
+
+        List<Company> companyList= companyService.getCompanyList();
+
+        return new ResponseEntity(companyList,HttpStatus.OK);
+    }
+
+    //체용공고 검색
+    @GetMapping("/search")
+    public ResponseEntity<List<Company>> search(@RequestParam("search")String search) throws Exception {
+
+          List<Company> searchList= companyService.getSearchCompany(search);
+
+          return new ResponseEntity<>(searchList,HttpStatus.OK);
+
+
     }
 
 
