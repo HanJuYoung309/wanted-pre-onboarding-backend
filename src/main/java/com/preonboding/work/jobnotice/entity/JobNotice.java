@@ -1,4 +1,4 @@
-package com.preonboding.work.company.entity;
+package com.preonboding.work.jobnotice.entity;
 
 
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class Company {
+public class JobNotice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

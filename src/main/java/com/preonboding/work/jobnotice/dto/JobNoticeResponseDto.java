@@ -1,10 +1,12 @@
-package com.preonboding.work.company.dto;
+package com.preonboding.work.jobnotice.dto;
+
 
 import lombok.Getter;
 
 @Getter
-public class CompanyPostDto {
+public class JobNoticeResponseDto {
 
+    private Long companyId;
 
     private String postion;
 
@@ -13,7 +15,6 @@ public class CompanyPostDto {
     private String content;
 
     private String technology;
-
 
 
 }
